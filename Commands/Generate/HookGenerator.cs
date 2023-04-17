@@ -2,25 +2,20 @@ using ReactCLI.Templates;
 
 namespace ReactCLI.Commands.Generate
 {
-    internal class ComponentGenerator : Generator
+    internal class HookGenerator : Generator
     {
-        protected override string? PathShouldInclude => "components";
+        protected override string? PathShouldInclude => "hooks";
 
         protected override List<ITemplate> GetTemplates(string[] args)
         {
             var templates = new List<ITemplate>
             {
-                new ComponentTemplate(args)
+                new HookTemplate(args)
             };
 
             if (!args.Contains("-nt"))
             {
-                templates.Add(new ComponentTestTemplate(args[2]));
-            }
-
-            if (args.Contains("-s"))
-            {
-                templates.Add(new ComponentScssTemplate(args[2]));
+                templates.Add(new HookTestTemplate(args[2]));
             }
 
             if (args.Contains("-i"))
@@ -35,18 +30,18 @@ namespace ReactCLI.Commands.Generate
         {
             errorMessage = string.Empty;
 
-            var validOptions = new List<string> { "-p", "-nt", "-s", "-i" };
+            var validOptions = new List<string> { "-nt", "-i" };
             var givenOptions = args.Skip(3);
 
             if (args.Length < 3 || string.IsNullOrWhiteSpace(args[2]))
             {
-                errorMessage = "must provide <componentName>";
+                errorMessage = "must provide <hookName>";
             }
-            else if (!char.IsAsciiLetter(args[2][0]))
+            else if (!args[2].StartsWith("use"))
             {
-                errorMessage = "<componentName> must start with [a-zA-Z]";
+                errorMessage = "<hookName> must start with \"use\"";
             }
-            else if (givenOptions.Any(x => !validOptions.Contains(x)))
+            if (givenOptions.Any(x => !validOptions.Contains(x)))
             {
                 var valid = string.Join(" ", validOptions);
                 var given = string.Join(" ", givenOptions);

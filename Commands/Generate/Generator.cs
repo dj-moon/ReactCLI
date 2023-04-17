@@ -27,7 +27,7 @@ namespace ReactCLI.Commands.Generate
 
         protected virtual string CreateDirectory(string directoryName)
         {
-            var dir = $"{Environment.CurrentDirectory}/bin/{directoryName}"; // TODO: remove /bin
+            var dir = $"{Environment.CurrentDirectory}/{directoryName}";
 
             if (Directory.Exists(dir))
                 throw new DirectoryExistsException($"./{directoryName}");

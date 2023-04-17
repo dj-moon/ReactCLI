@@ -52,19 +52,31 @@ namespace ReactCLI
 
         private static void ShowHelp()
         {
-            "usage:".LogYellow();
+            "usage (generate component):".LogYellow();
             "  re (g|generate) (c|component) <componentName> [options...]".Log();
             "".Log();
             "arguments:".LogYellow();
             "  (g|generate)      generate something".Log();
-            "  (component|c)     generate component".Log();
+            "  (c|component)     generate component".Log();
             "  <componentName>   name of component".Log();
             "".Log();
             "options:".LogYellow();
             "  -s     styles - creates component scss file".Log();
             "  -p     properties - creates interface for component properties".Log();
-            "  -nt    no tests - skips component test file creation".Log();
-            "  -nt    index file - creates index file with default export".Log();
+            "  -nt    no tests - skips test file creation".Log();
+            "  -i     index file - creates index file with default export".Log();
+            "----------------------------------------------------------------".LogBlue();
+            "usage (generate hook):".LogYellow();
+            "  re (g|generate) (h|hook) <hookName> [options...]".Log();
+            "".Log();
+            "arguments:".LogYellow();
+            "  (g|generate)      generate something".Log();
+            "  (h|hook)          generate hook".Log();
+            "  <hookName>        name of hook".Log();
+            "".Log();
+            "options:".LogYellow();
+            "  -nt    no tests - skips test file creation".Log();
+            "  -i     index file - creates index file with default export".Log();
         }
     }
 }

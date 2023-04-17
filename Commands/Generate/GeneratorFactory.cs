@@ -14,6 +14,9 @@ namespace ReactCLI.Commands.Generate
                 case "c":
                 case "component":
                     return new ComponentGenerator();
+                case "h":
+                case "hook":
+                    return new HookGenerator();
                 default:
                     throw new InvalidArgsException();
             }
